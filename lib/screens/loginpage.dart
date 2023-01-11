@@ -58,7 +58,8 @@ class _LoginPageState extends State<LoginPage> {
                     osbcured: true,
                     controller: _loginController.senhaLogin.value,
                     prefixIcon: Icons.lock,
-                    textInputType: TextInputType.visiblePassword),
+                    textInputType: TextInputType.visiblePassword,
+                    maxLines: 1),
               ),
               // ElevatedButton(
               //     onPressed: () {

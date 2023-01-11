@@ -1,11 +1,10 @@
 import 'package:commands/controllers/geral_controller.dart';
 import 'package:commands/modules/user/controllers/user_controller.dart';
-import 'package:commands/modules/user/service/user_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AdminBottomBarCustom extends StatelessWidget {
-  const AdminBottomBarCustom({
+class CommandsBottomBarCustom extends StatelessWidget {
+  const CommandsBottomBarCustom({
     Key? key,
   }) : super(key: key);
 
@@ -36,11 +35,11 @@ class AdminBottomBarCustom extends StatelessWidget {
             onTap: (index) {
               geralController.valueFiltro.value = index;
               if (index == 0) {
-                Get.offAllNamed('/AdminHomePage');
+                Get.offAllNamed('/CommandsHomePage');
               }
               if (index == 1) {
-                UserService.userShow(id: userController.idUserLogged.value)
-                    .then((value) => Get.offAllNamed('/AdminProfilePage'));
+                // UserService.userShow(id: userController.idUserLogged.value)
+                //     .then((value) => Get.offAllNamed('/AdminProfilePage'));
               }
             },
             items: const [

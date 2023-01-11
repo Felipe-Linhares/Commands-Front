@@ -13,6 +13,7 @@ class UserService {
   static final _loginController = Get.find<LoginController>();
   static final _userController = Get.find<UserController>();
 
+// * GET
   static Future userIndex() async {
     log('opaaa');
     log(_loginController.key.value);
@@ -36,6 +37,7 @@ class UserService {
     return null;
   }
 
+// * SHOW
   static Future userShow({
     int? id,
   }) async {
@@ -138,6 +140,7 @@ class UserService {
     return null;
   }
 
+// * Delete
   static Future userDelete({
     int? id,
   }) async {

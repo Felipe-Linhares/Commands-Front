@@ -16,7 +16,7 @@ class TextViewCustom extends StatelessWidget {
       padding: const EdgeInsets.only(left: 10, right: 10),
       child: Text(
         '$title',
-        textAlign: TextAlign.center,
+        // textAlign: TextAlign.center,
         style: TextStyle(fontSize: Components.width(context) / fontSize),
       ),
     );

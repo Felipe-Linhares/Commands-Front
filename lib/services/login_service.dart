@@ -25,6 +25,8 @@ class LoginService {
         case 200:
           _loginController.key.value = response.data['token'].toString();
           _userController.idUserLogged.value = response.data['id'];
+          log(_userController.idUserLogged.value.toString());
+
           Get.snackbar('Sucess', 'olha o login aqui');
           log(response.data.toString());
           log('User login success');
@@ -34,7 +36,7 @@ class LoginService {
 
           switch (response.data['role'] == 'USER') {
             case true:
-              return 'ok';
+              return Get.offAllNamed('/CommandsHomePage');
             case false:
               return Get.offAllNamed('/AdminHomePage');
           }

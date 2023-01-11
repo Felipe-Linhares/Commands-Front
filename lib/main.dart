@@ -1,8 +1,8 @@
 // Flutter imports:
 // Project imports:
-import 'package:commands/controllers/comandas_controller.dart';
 import 'package:commands/controllers/geral_controller.dart';
 import 'package:commands/controllers/login_controller.dart';
+import 'package:commands/modules/comandas/controllers/commands_controller.dart';
 import 'package:commands/modules/user/controllers/user_controller.dart';
 import 'package:commands/routes/routes.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +15,7 @@ void main() async {
   Get.put(LoginController());
   Get.put(UserController());
 
-  Get.put(ComandasController());
+  Get.put(CommandsController());
   Get.put(GeralController());
   runApp(const MyApp());
 }

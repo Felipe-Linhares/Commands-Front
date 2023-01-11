@@ -2,13 +2,15 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:commands/components/buttons_components/elevated_button_custom.dart';
+import 'package:commands/components/buttons_components/floating_action_button_custom.dart';
 import 'package:commands/components/buttons_components/iconbutton_custom.dart';
 import 'package:commands/components/buttons_components/lists_action_button.dart';
+import 'package:commands/components/components.dart';
+import 'package:commands/components/divider_custom.dart';
 import 'package:commands/components/form_components/formfield_custom.dart';
 import 'package:commands/components/form_components/validate_forms.dart';
+import 'package:commands/components/textview_custom.dart';
 import 'package:commands/modules/admin/components/admin_bottombar.dart';
-import 'package:commands/modules/admin/components/admin_compoenents.dart';
-import 'package:commands/modules/admin/components/admin_floating_action_button.dart';
 import 'package:commands/modules/user/controllers/user_controller.dart';
 import 'package:commands/modules/user/service/user_service.dart';
 import 'package:flutter/material.dart';
@@ -22,12 +24,12 @@ class UserListPage extends StatefulWidget {
 }
 
 class _UserListPageState extends State<UserListPage> {
-  final _key = GlobalKey<FormState>();
-  final userController = Get.find<UserController>();
+  // final _key = GlobalKey<FormState>();
+  static final _userController = Get.find<UserController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AdminComponents.appbar('Lista de Usuário'),
+      appBar: Components.appbar('Lista de Usuário'),
       body: FutureBuilder(
         future: UserService.userIndex(),
         builder: (context, snapshot) {
@@ -43,20 +45,20 @@ class _UserListPageState extends State<UserListPage> {
                     ElevateButtonCustom(
                       width: 2,
                       title: 'Novo Usuário',
-                      onPressed: () => Get.toNamed('/RegistrationPage'),
+                      onPressed: () => Get.toNamed('/UserRegistrationPage'),
                     ),
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: ListView.builder(
-                            itemCount: userController.allUsers.length,
+                            itemCount: _userController.allUsers.length,
                             itemBuilder: (context, index) {
                               return Card(
                                 elevation: 1,
                                 child: ExpansionTile(
                                   title: Text(
-                                      '${userController.allUsers[index].name} '
-                                      '${userController.allUsers[index].lastname}'),
+                                      '${_userController.allUsers[index].name} '
+                                      '${_userController.allUsers[index].lastname}'),
                                   leading: circleAvatarListUser(index),
                                   children: [
                                     Padding(
@@ -67,17 +69,17 @@ class _UserListPageState extends State<UserListPage> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.start,
                                             children: [
-                                              Text('E-mail: '
-                                                  ' ${userController.allUsers[index].email}'),
+                                              TextViewCustom(
+                                                fontSize: 22,
+                                                title: 'E-mail: '
+                                                    ' ${_userController.allUsers[index].email}',
+                                              ),
                                             ],
                                           ),
                                         ],
                                       ),
                                     ),
-                                    const Divider(
-                                      height: 10,
-                                      color: Colors.black,
-                                    ),
+                                    const DividerCustom(),
                                     Padding(
                                       padding: const EdgeInsets.all(10),
                                       child: Row(
@@ -88,15 +90,15 @@ class _UserListPageState extends State<UserListPage> {
                                             icon: Icons.edit,
                                             color: Colors.green,
                                             onPressed: () {
-                                              onPressedEditingButton(context,
-                                                  userController, index);
+                                              onPressedEditingButton(
+                                                  context, index);
                                             },
                                           ),
                                           ButtonActionLists(
                                             icon: Icons.delete,
                                             color: Colors.red,
                                             onPressed: () {
-                                              log(userController
+                                              log(_userController
                                                   .allUsers[index].id
                                                   .toString());
                                               onPressedDeleteButton(
@@ -116,13 +118,19 @@ class _UserListPageState extends State<UserListPage> {
                 );
               } else {
                 return const Center(
-                  child: Text('Sem dados'),
+                  child: TextViewCustom(
+                    fontSize: 22,
+                    title: 'Sem Dados ',
+                  ),
                 );
               }
             default:
               if (snapshot.hasError) {
                 return const Center(
-                  child: Text('Erro ao carregar dados..'),
+                  child: TextViewCustom(
+                    fontSize: 22,
+                    title: 'Erro ao Carregar Dados ',
+                  ),
                 );
               } else {
                 return const Center(
@@ -136,15 +144,17 @@ class _UserListPageState extends State<UserListPage> {
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: const AdminFloatingActionButtom(),
-      bottomNavigationBar: const AdminBottomBar(),
+      floatingActionButton: FloatingActionButtomCustom(
+        onPressed: () => Get.offAllNamed('/UserListPage'),
+      ),
+      bottomNavigationBar: const AdminBottomBarCustom(),
     );
   }
 
   CircleAvatar circleAvatarListUser(int index) {
     return CircleAvatar(
       radius: 25,
-      child: userController.allUsers[index].image == ''
+      child: _userController.allUsers[index].image == ''
           ? const Icon(Icons.person_outline)
           : Container(
               decoration: BoxDecoration(
@@ -153,7 +163,7 @@ class _UserListPageState extends State<UserListPage> {
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: MemoryImage(
-                    base64Decode((userController.allUsers[index].image)),
+                    base64Decode((_userController.allUsers[index].image)),
                   ),
                 ),
               ),
@@ -174,7 +184,7 @@ class _UserListPageState extends State<UserListPage> {
                 IconButtomCustom(
                   onPressed: () {
                     UserService.userDelete(
-                            id: userController.allUsers[index].id)
+                            id: _userController.allUsers[index].id)
                         .then(
                       (value) => UserService.userIndex().then(
                         (value) => Get.offAllNamed('/UserListPage'),
@@ -197,16 +207,15 @@ class _UserListPageState extends State<UserListPage> {
     );
   }
 
-  Future<dynamic> onPressedEditingButton(
-      BuildContext context, UserController userController, int index) {
+  Future<dynamic> onPressedEditingButton(BuildContext context, int index) {
     TextEditingController email =
-        TextEditingController(text: (userController.allUsers[index].email));
+        TextEditingController(text: (_userController.allUsers[index].email));
     TextEditingController password =
-        TextEditingController(text: (userController.allUsers[index].password));
+        TextEditingController(text: (_userController.allUsers[index].password));
     TextEditingController name =
-        TextEditingController(text: (userController.allUsers[index].name));
+        TextEditingController(text: (_userController.allUsers[index].name));
     TextEditingController lastname =
-        TextEditingController(text: (userController.allUsers[index].lastname));
+        TextEditingController(text: (_userController.allUsers[index].lastname));
 
     return showDialog(
         context: context,
@@ -253,7 +262,7 @@ class _UserListPageState extends State<UserListPage> {
                     prefixIcon: Icons.person),
                 ElevateButtonCustom(
                   width: 2,
-                  onPressed: () => userController.selecionarImagem(),
+                  onPressed: () => _userController.selecionarImagem(),
                   title: 'Adicionar Foto',
                 ),
               ]),
@@ -265,12 +274,12 @@ class _UserListPageState extends State<UserListPage> {
                       onPressed: () {
                         // _key.currentState?.validate();
                         UserService.userUpdate(
-                          id: userController.allUsers[index].id,
+                          id: _userController.allUsers[index].id,
                           email: email.text,
                           password: password.text,
                           name: name.text,
                           lastname: lastname.text,
-                          image: userController.imageRegister.value.text,
+                          image: _userController.imageRegister.value.text,
                         ).then(
                           (value) => UserService.userIndex().then(
                             (value) => Get.offAllNamed('/UserListPage'),

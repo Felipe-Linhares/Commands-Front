@@ -1,11 +1,11 @@
+import 'package:commands/components/buttons_components/floating_action_button_custom.dart';
 import 'package:commands/components/components.dart';
 import 'package:commands/components/divider_custom.dart';
 import 'package:commands/modules/admin/components/admin_bottombar.dart';
-import 'package:commands/modules/admin/components/admin_compoenents.dart';
-import 'package:commands/modules/admin/components/admin_floating_action_button.dart';
 import 'package:commands/modules/admin/components/card_custom.dart';
 import 'package:commands/modules/user/service/user_service.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AdminHomePage extends StatefulWidget {
   const AdminHomePage({
@@ -26,7 +26,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AdminComponents.appbar('HomePage'),
+      appBar: Components.appbar('HomePage'),
       body: Column(children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -58,8 +58,10 @@ class _AdminHomePageState extends State<AdminHomePage> {
         const DividerCustom(),
       ]),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: const AdminFloatingActionButtom(),
-      bottomNavigationBar: const AdminBottomBar(),
+      floatingActionButton: FloatingActionButtomCustom(
+        onPressed: () => Get.offAllNamed('/UserListPage'),
+      ),
+      bottomNavigationBar: const AdminBottomBarCustom(),
     );
   }
 }

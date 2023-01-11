@@ -1,10 +1,10 @@
 import 'dart:convert';
 
+import 'package:commands/components/buttons_components/floating_action_button_custom.dart';
 import 'package:commands/components/components.dart';
 import 'package:commands/components/divider_custom.dart';
 import 'package:commands/components/textview_custom.dart';
 import 'package:commands/modules/admin/components/admin_bottombar.dart';
-import 'package:commands/modules/admin/components/admin_floating_action_button.dart';
 import 'package:commands/modules/user/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,7 +30,6 @@ class _AdminProfilePageState extends State<AdminProfilePage> {
             Padding(
               padding: const EdgeInsets.all(10),
               child: CircleAvatar(
-                // backgroundColor: Colors.orange.shade100,
                 radius: Components.width(context) / 4,
                 child: _userController.getUser.value.image == ''
                     ? Icon(
@@ -62,10 +61,13 @@ class _AdminProfilePageState extends State<AdminProfilePage> {
         const DividerCustom(),
         TextViewCustom(
             title: _userController.getUser.value.email, fontSize: 16),
+        const DividerCustom(),
       ]),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: const AdminFloatingActionButtom(),
-      bottomNavigationBar: const AdminBottomBar(),
+      floatingActionButton: FloatingActionButtomCustom(
+        onPressed: () => Get.offAllNamed('/UserListPage'),
+      ),
+      bottomNavigationBar: const AdminBottomBarCustom(),
     );
   }
 }

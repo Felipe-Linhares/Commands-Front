@@ -10,9 +10,10 @@ class FormFieldCustom extends StatelessWidget {
       this.prefixIcon,
       this.labelText,
       // this.onChanged,
-      this.validator})
+      this.validator,
+      this.maxLines})
       : super(key: key);
-
+  final int? maxLines;
   final TextEditingController? controller;
   final bool? osbcured;
   final TextInputType? textInputType;
@@ -26,6 +27,7 @@ class FormFieldCustom extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: TextFormField(
+        maxLines: maxLines ?? 1,
         controller: controller,
         // onChanged: onChanged,
         obscureText: osbcured!,

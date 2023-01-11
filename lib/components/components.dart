@@ -42,4 +42,10 @@ class Components {
       ],
     );
   }
+
+  static appbar(String? title) {
+    return AppBar(
+      title: Text(title!),
+    );
+  }
 }

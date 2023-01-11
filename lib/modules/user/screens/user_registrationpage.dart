@@ -14,16 +14,16 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:get/get.dart';
 
-class RegistrationPage extends StatefulWidget {
-  const RegistrationPage({
+class UserRegistrationPage extends StatefulWidget {
+  const UserRegistrationPage({
     super.key,
   });
 
   @override
-  State<RegistrationPage> createState() => _RegistrationPageState();
+  State<UserRegistrationPage> createState() => _UserRegistrationPageState();
 }
 
-class _RegistrationPageState extends State<RegistrationPage> {
+class _UserRegistrationPageState extends State<UserRegistrationPage> {
   final _key = GlobalKey<FormState>();
 
   final _userController = Get.find<UserController>();
