@@ -6,8 +6,8 @@ import 'package:commands/components/components.dart';
 import 'package:commands/controllers/login_controller.dart';
 import 'package:commands/modules/user/controllers/user_controller.dart';
 import 'package:commands/services/dio/dio_client.dart';
-import 'package:dio/dio.dart';
 // Package imports:
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
 class LoginService {
@@ -17,7 +17,8 @@ class LoginService {
   static Future login() async {
     try {
       final response = await DioClient.dioBase.post('login/', data: {
-        'email': _loginController.emailLogin.value.text,
+        'email':
+            _loginController.emailLogin.value.text.toString().toLowerCase(),
         'password': _loginController.senhaLogin.value.text,
       });
 
@@ -25,14 +26,6 @@ class LoginService {
         case 200:
           _loginController.key.value = response.data['token'].toString();
           _userController.idUserLogged.value = response.data['id'];
-          log(_userController.idUserLogged.value.toString());
-
-          Get.snackbar('Sucess', 'olha o login aqui');
-          log(response.data.toString());
-          log('User login success');
-          log(response.data['token'].toString());
-          log(response.data.toString());
-          log(response.statusCode.toString());
 
           switch (response.data['role'] == 'USER') {
             case true:
@@ -44,6 +37,8 @@ class LoginService {
           return response.data;
       }
     } on DioError catch (err) {
+      log(err.toString());
+
       switch (err.response!.statusCode) {
         case 400:
           return Components.errorSnackBarCustom(
@@ -52,7 +47,8 @@ class LoginService {
         case 401:
           return Components.errorSnackBarCustom(
               title: 'Erro ao Enviar',
-              menssage: 'Entre em contato com o suporte.');
+              menssage:
+                  'Você não tem autorização, entre em contato com o suporte.');
 
         default:
       }

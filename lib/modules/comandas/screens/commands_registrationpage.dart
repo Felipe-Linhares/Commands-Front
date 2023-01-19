@@ -1,3 +1,10 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:get/get.dart';
+
+// Project imports:
 import 'package:commands/components/buttons_components/elevated_button_custom.dart';
 import 'package:commands/components/buttons_components/floating_action_button_custom.dart';
 import 'package:commands/components/components.dart';
@@ -6,8 +13,6 @@ import 'package:commands/modules/comandas/components/commands_bottombar_custom.d
 import 'package:commands/modules/comandas/controllers/commands_controller.dart';
 import 'package:commands/modules/comandas/service/commands_service.dart';
 import 'package:commands/modules/user/controllers/user_controller.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class CommandsRegistrationPage extends StatefulWidget {
   const CommandsRegistrationPage({super.key});
@@ -32,12 +37,13 @@ class _CommandsRegistrationPageState extends State<CommandsRegistrationPage> {
             Padding(
               padding: const EdgeInsets.only(top: 10),
               child: FormFieldCustom(
+                maxLines: 1,
                 labelText: 'Nome',
                 controller: _commandsController.nameCommands.value,
                 osbcured: false,
                 prefixIcon: Icons.table_bar,
                 textInputType: TextInputType.text,
-                // validator: (p0) => ValidateForms.,
+                validator: (p0) => '',
               ),
             ),
             FormFieldCustom(
@@ -47,7 +53,7 @@ class _CommandsRegistrationPageState extends State<CommandsRegistrationPage> {
               prefixIcon: Icons.bookmark,
               textInputType: TextInputType.text,
               maxLines: 5,
-              // validator: (p0) => ValidateForms.,
+              validator: (p0) => '',
             ),
             FormFieldCustom(
               labelText: 'Obervação',
@@ -56,18 +62,18 @@ class _CommandsRegistrationPageState extends State<CommandsRegistrationPage> {
               prefixIcon: Icons.note,
               textInputType: TextInputType.text,
               maxLines: 3,
-              // validator: (p0) => ValidateForms.,
+              validator: (p0) => '',
             ),
             ElevateButtonCustom(
               width: 3,
               title: 'Cadastrar',
               onPressed: () {
                 CommandsService.commandsCreate(
-                    userId: _userController.idUserLogged.value,
-                    name: _commandsController.nameCommands.value.text,
-                    note: _commandsController.noteCommands.value.text,
-                    request: _commandsController.requestCommands.value.text);
-                // Get.offAllNamed('/HomePage');
+                        userId: _userController.idUserLogged.value,
+                        name: _commandsController.nameCommands.value.text,
+                        note: _commandsController.noteCommands.value.text,
+                        request: _commandsController.requestCommands.value.text)
+                    .then((value) => Get.offAllNamed('/CommandsHomePage'));
               },
             ),
           ]),

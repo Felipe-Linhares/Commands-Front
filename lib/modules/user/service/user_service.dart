@@ -1,13 +1,15 @@
+// Dart imports:
 import 'dart:developer';
 
+// Project imports:
 import 'package:commands/components/components.dart';
 import 'package:commands/controllers/login_controller.dart';
 import 'package:commands/modules/user/controllers/user_controller.dart';
 import 'package:commands/modules/user/model/user_model.dart';
 import 'package:commands/services/dio/dio_client.dart';
+// Package imports:
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-// import 'package:http/http.dart' as http;
 
 class UserService {
   static final _loginController = Get.find<LoginController>();
@@ -34,7 +36,6 @@ class UserService {
       log(err.toString());
       rethrow;
     }
-    return null;
   }
 
 // * SHOW
@@ -53,12 +54,9 @@ class UserService {
         default:
       }
     } on DioError catch (err) {
-      log(_loginController.key.value);
-
       log(err.toString());
       rethrow;
     }
-    return null;
   }
 
 // * CREATE
@@ -92,7 +90,6 @@ class UserService {
       log(err.toString());
       rethrow;
     }
-    return null;
   }
 
   // * UPDATE
@@ -137,7 +134,6 @@ class UserService {
 
       rethrow;
     }
-    return null;
   }
 
 // * Delete
@@ -158,6 +154,5 @@ class UserService {
       log(err.toString());
       rethrow;
     }
-    return null;
   }
 }

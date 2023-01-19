@@ -1,8 +1,14 @@
+// Dart imports:
 import 'dart:convert';
 
-import 'package:commands/modules/comandas/model/commands_model.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:get/get.dart';
+
+// Project imports:
+import 'package:commands/modules/comandas/model/commands_model.dart';
 
 class CommandsController extends GetxController {
   RxList allCommands = <CommandsModel>[].obs;

@@ -1,7 +1,13 @@
-import 'package:commands/components/components.dart';
-import 'package:commands/modules/user/controllers/user_controller.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:get/get.dart';
+
+// Project imports:
+import 'package:commands/components/components.dart';
+import 'package:commands/modules/comandas/controllers/commands_controller.dart';
+import 'package:commands/modules/user/controllers/user_controller.dart';
 
 class CardCustom extends StatelessWidget {
   const CardCustom({
@@ -17,6 +23,7 @@ class CardCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userController = Get.find<UserController>();
+    final commmandsController = Get.find<CommandsController>();
 
     return Padding(
       padding: const EdgeInsets.all(10),
@@ -37,7 +44,7 @@ class CardCustom extends StatelessWidget {
                   data == 0
                       ? '${userController.allUsers.length}'
                       : data == 1
-                          ? 'opa'
+                          ? '${commmandsController.allCommands.length}'
                           : 'error',
                   style: TextStyle(
                     fontSize: Components.width(context) / fontSize,

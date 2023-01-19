@@ -1,3 +1,10 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:get/get.dart';
+
+// Project imports:
 import 'package:commands/components/buttons_components/floating_action_button_custom.dart';
 import 'package:commands/components/buttons_components/iconbutton_custom.dart';
 import 'package:commands/components/buttons_components/lists_action_button.dart';
@@ -8,8 +15,6 @@ import 'package:commands/components/textview_custom.dart';
 import 'package:commands/modules/comandas/components/commands_bottombar_custom.dart';
 import 'package:commands/modules/comandas/controllers/commands_controller.dart';
 import 'package:commands/modules/comandas/service/commands_service.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class CommandsHomePage extends StatefulWidget {
   const CommandsHomePage({super.key});

@@ -1,14 +1,16 @@
 // Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get/get.dart';
+
 // Project imports:
 import 'package:commands/controllers/geral_controller.dart';
 import 'package:commands/controllers/login_controller.dart';
 import 'package:commands/modules/comandas/controllers/commands_controller.dart';
 import 'package:commands/modules/user/controllers/user_controller.dart';
 import 'package:commands/routes/routes.dart';
-import 'package:flutter/material.dart';
-// Package imports:
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:get/get.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
@@ -33,7 +35,7 @@ class MyApp extends StatelessWidget {
               primary: Colors.orange,
               secondary: Colors.orange.shade300),
         ),
-        initialRoute: '/LoginPage',
+        initialRoute: '/',
         getPages: routes);
   }
 }

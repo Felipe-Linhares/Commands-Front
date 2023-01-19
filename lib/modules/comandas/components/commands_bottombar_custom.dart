@@ -1,7 +1,13 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:get/get.dart';
+
+// Project imports:
 import 'package:commands/controllers/geral_controller.dart';
 import 'package:commands/modules/user/controllers/user_controller.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:commands/modules/user/service/user_service.dart';
 
 class CommandsBottomBarCustom extends StatelessWidget {
   const CommandsBottomBarCustom({
@@ -38,8 +44,8 @@ class CommandsBottomBarCustom extends StatelessWidget {
                 Get.offAllNamed('/CommandsHomePage');
               }
               if (index == 1) {
-                // UserService.userShow(id: userController.idUserLogged.value)
-                //     .then((value) => Get.offAllNamed('/AdminProfilePage'));
+                UserService.userShow(id: userController.idUserLogged.value)
+                    .then((value) => Get.offAllNamed('/UserProfilePage'));
               }
             },
             items: const [

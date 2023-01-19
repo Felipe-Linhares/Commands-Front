@@ -1,8 +1,11 @@
+// Dart imports:
 import 'dart:developer';
 
+// Project imports:
 import 'package:commands/modules/comandas/controllers/commands_controller.dart';
 import 'package:commands/modules/comandas/model/commands_model.dart';
 import 'package:commands/services/dio/dio_client.dart';
+// Package imports:
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
@@ -16,7 +19,6 @@ class CommandsService {
 
       switch (response.statusCode) {
         case 200:
-          log('todas as comands ${response.data}');
           _commandsController.commandsShowList(response.data);
           return response.data;
 
@@ -26,7 +28,6 @@ class CommandsService {
       log(err.toString());
       rethrow;
     }
-    return null;
   }
 
   // * SHOW
@@ -80,7 +81,6 @@ class CommandsService {
       log(err.toString());
       rethrow;
     }
-    return null;
   }
 
   // * UPDATE
@@ -111,19 +111,10 @@ class CommandsService {
         default:
       }
     } on DioError catch (err) {
-      // switch (err.response!.statusCode) {
-      //   case 413:
-      //     return Components.errorSnackBarCustom(
-      //         title: 'Erro ao Enviar',
-      //         menssage: 'A imagem é muito grande, selecione outra.');
-
-      //   default:
-      // }
       log(err.toString());
 
       rethrow;
     }
-    return null;
   }
 
   // * Delete
@@ -144,6 +135,5 @@ class CommandsService {
       log(err.toString());
       rethrow;
     }
-    return null;
   }
 }

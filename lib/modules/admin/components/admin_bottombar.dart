@@ -1,8 +1,13 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:get/get.dart';
+
+// Project imports:
 import 'package:commands/controllers/geral_controller.dart';
 import 'package:commands/modules/user/controllers/user_controller.dart';
 import 'package:commands/modules/user/service/user_service.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class AdminBottomBarCustom extends StatelessWidget {
   const AdminBottomBarCustom({

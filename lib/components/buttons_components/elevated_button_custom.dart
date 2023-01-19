@@ -1,7 +1,8 @@
 // Flutter imports:
+import 'package:flutter/material.dart';
+
 // Project imports:
 import 'package:commands/components/components.dart';
-import 'package:flutter/material.dart';
 
 class ElevateButtonCustom extends StatelessWidget {
   const ElevateButtonCustom({

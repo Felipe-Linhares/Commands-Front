@@ -1,6 +1,14 @@
+// Dart imports:
 import 'dart:convert';
 import 'dart:developer';
 
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:get/get.dart';
+
+// Project imports:
 import 'package:commands/components/buttons_components/elevated_button_custom.dart';
 import 'package:commands/components/buttons_components/floating_action_button_custom.dart';
 import 'package:commands/components/buttons_components/iconbutton_custom.dart';
@@ -13,8 +21,6 @@ import 'package:commands/components/textview_custom.dart';
 import 'package:commands/modules/admin/components/admin_bottombar.dart';
 import 'package:commands/modules/user/controllers/user_controller.dart';
 import 'package:commands/modules/user/service/user_service.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class UserListPage extends StatefulWidget {
   const UserListPage({super.key});

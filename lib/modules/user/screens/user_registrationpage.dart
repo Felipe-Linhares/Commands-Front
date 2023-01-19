@@ -1,15 +1,10 @@
 // Flutter imports:
-
 // Project imports:
-
 import 'package:commands/components/buttons_components/elevated_button_custom.dart';
-import 'package:commands/components/buttons_components/elevated_button_loading_custom.dart';
 import 'package:commands/components/form_components/formfield_custom.dart';
 import 'package:commands/components/form_components/validate_forms.dart';
-import 'package:commands/controllers/geral_controller.dart';
 import 'package:commands/modules/user/controllers/user_controller.dart';
 import 'package:commands/modules/user/service/user_service.dart';
-// Flutter imports:
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:get/get.dart';
@@ -27,7 +22,6 @@ class _UserRegistrationPageState extends State<UserRegistrationPage> {
   final _key = GlobalKey<FormState>();
 
   final _userController = Get.find<UserController>();
-  final _geralController = Get.find<GeralController>();
 
   @override
   Widget build(BuildContext context) {
@@ -83,19 +77,16 @@ class _UserRegistrationPageState extends State<UserRegistrationPage> {
                       return ValidateForms.validarNome(value!,
                           title: 'Sobrenome');
                     }),
-
                 ElevateButtonCustom(
                   width: 2,
                   onPressed: () => _userController.selecionarImagem(),
                   title: 'Adicionar Foto',
                 ),
-                ElevateButtonLoadingCustom(
+                ElevateButtonCustom(
+                  width: 2,
                   title: 'Cadastrar Usuário',
-                  isLoader: _geralController.isLoader.value,
                   onPressed: () {
                     _key.currentState!.validate();
-                    // ? _geralController.isLoader.value = true
-                    // : _geralController.isLoader.value = false;
 
                     UserService.userCreate(
                             email: _userController.emailRegister.value.text,
@@ -105,14 +96,9 @@ class _UserRegistrationPageState extends State<UserRegistrationPage> {
                             lastname:
                                 _userController.lastNameRegister.value.text,
                             image: _userController.imageRegister.value.text)
-                        .then((value) => Get.offAllNamed('/UserList'));
+                        .then((value) => Get.offAllNamed('/UserListPage'));
                   },
                 ),
-                // GestureButtonCustom(
-                //   title: 'Já possui conta?  ',
-                //   textColor: 'Faça Login!!',
-                //   onTap: () => Get.offNamed("/LoginPage"),
-                // )
               ],
             ),
           ),

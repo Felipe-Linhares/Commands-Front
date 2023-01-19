@@ -1,9 +1,10 @@
 // Package imports:
-
-import 'package:commands/controllers/login_controller.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
+
+// Project imports:
+import 'package:commands/controllers/login_controller.dart';
 
 class DioClient {
   static final _loginController = Get.find<LoginController>();

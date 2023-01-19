@@ -13,18 +13,20 @@ import 'package:commands/components/buttons_components/floating_action_button_cu
 import 'package:commands/components/components.dart';
 import 'package:commands/components/divider_custom.dart';
 import 'package:commands/components/textview_custom.dart';
-import 'package:commands/modules/admin/components/admin_bottombar.dart';
+import 'package:commands/modules/comandas/components/commands_bottombar_custom.dart';
+import 'package:commands/modules/comandas/controllers/commands_controller.dart';
 import 'package:commands/modules/user/controllers/user_controller.dart';
 import 'package:commands/modules/user/service/user_service.dart';
 
-class AdminProfilePage extends StatefulWidget {
-  const AdminProfilePage({super.key});
+class UserProfilePage extends StatefulWidget {
+  const UserProfilePage({super.key});
 
   @override
-  State<AdminProfilePage> createState() => _AdminProfilePageState();
+  State<UserProfilePage> createState() => _UserProfilePageState();
 }
 
-class _AdminProfilePageState extends State<AdminProfilePage> {
+class _UserProfilePageState extends State<UserProfilePage> {
+  static final _commandsController = Get.find<CommandsController>();
   static final _userController = Get.find<UserController>();
 
   @override
@@ -83,9 +85,12 @@ class _AdminProfilePageState extends State<AdminProfilePage> {
       ]),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButtomCustom(
-        onPressed: () => Get.offAllNamed('/UserListPage'),
+        onPressed: () {
+          _commandsController.clearCommandsFields();
+          Get.offAllNamed('/CommandsRegistrationPage');
+        },
       ),
-      bottomNavigationBar: const AdminBottomBarCustom(),
+      bottomNavigationBar: const CommandsBottomBarCustom(),
     );
   }
 }

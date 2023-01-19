@@ -1,8 +1,12 @@
 // Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:get/get.dart';
+
+// Project imports:
 import 'package:commands/controllers/geral_controller.dart';
 import 'package:commands/controllers/login_controller.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class Components {
   // * responsiveness
