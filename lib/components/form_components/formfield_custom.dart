@@ -9,7 +9,6 @@ class FormFieldCustom extends StatelessWidget {
       this.textInputType,
       this.prefixIcon,
       this.labelText,
-      // this.onChanged,
       this.validator,
       this.maxLines})
       : super(key: key);
@@ -19,7 +18,6 @@ class FormFieldCustom extends StatelessWidget {
   final TextInputType? textInputType;
   final IconData? prefixIcon;
   final String? labelText;
-  // final Function(String)? onChanged;
   final String? Function(String?)? validator;
 
   @override
@@ -29,7 +27,6 @@ class FormFieldCustom extends StatelessWidget {
       child: TextFormField(
         maxLines: maxLines ?? 1,
         controller: controller,
-        // onChanged: onChanged,
         obscureText: osbcured!,
         keyboardType: textInputType,
         validator: validator,

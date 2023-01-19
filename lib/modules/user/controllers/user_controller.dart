@@ -1,9 +1,13 @@
+// Dart imports:
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
+// Project imports:
 import 'package:commands/modules/user/model/user_model.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+// Package imports:
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -48,8 +52,6 @@ class UserController extends GetxController {
     try {
       XFile? file = await picker.pickImage(
         source: ImageSource.gallery,
-        // maxWidth: 500,
-        // maxHeight: 500,
         imageQuality: 10,
       );
       if (file != null) {
@@ -61,15 +63,5 @@ class UserController extends GetxController {
     } catch (e) {
       debugPrint('$e');
     }
-    // log('  $pacienteController.pacienteModel.value.fotoDoPaciente');
   }
-
-  // Future getFromGallery() async {
-  //   XFile? pickedFile = await ImagePicker().pickImage(
-  //       source: ImageSource.gallery,
-  //       maxWidth: 1800,
-  //       maxHeight: 1800,
-  //       imageQuality: 50);
-  //   XFile imageFile = XFile(pickedFile!.path);
-  // }
 }

@@ -1,3 +1,5 @@
+// Flutter imports:
+// Project imports:
 import 'package:commands/components/components.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +18,6 @@ class TextViewCustom extends StatelessWidget {
       padding: const EdgeInsets.only(left: 10, right: 10),
       child: Text(
         '$title',
-        // textAlign: TextAlign.center,
         style: TextStyle(fontSize: Components.width(context) / fontSize),
       ),
     );
